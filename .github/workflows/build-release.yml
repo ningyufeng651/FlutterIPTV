@@ -4,6 +4,7 @@ on:
 push:
 tags:
 - 'v*.*.*'
+
 workflow_dispatch:
 inputs:
 version:
@@ -26,10 +27,10 @@ build-windows:
 name: Build Windows
 runs-on: windows-latest
 
-
+```
 steps:
   - name: Checkout repository
-    uses: actions/checkout@v6
+    uses: actions/checkout@v7
 
   - name: Setup Flutter
     uses: subosito/flutter-action@v2
@@ -64,12 +65,12 @@ steps:
         -Force
 
   - name: Upload Windows Artifact
-    uses: actions/upload-artifact@v5
+    uses: actions/upload-artifact@v6
     with:
       name: windows-release
       path: flutteriptv-Windows-x64.zip
       retention-days: 5
-
+```
 
 # ============================================
 
@@ -81,13 +82,13 @@ build-android-mobile:
 name: Build Android Mobile
 runs-on: ubuntu-latest
 
-
+```
 steps:
   - name: Checkout repository
-    uses: actions/checkout@v6
+    uses: actions/checkout@v7
 
   - name: Setup Java
-    uses: actions/setup-java@v5
+    uses: actions/setup-java@v6
     with:
       distribution: temurin
       java-version: '17'
@@ -130,12 +131,12 @@ steps:
         dist/android-mobile/flutteriptv-Android-Mobile-universal.apk
 
   - name: Upload Android Mobile Artifacts
-    uses: actions/upload-artifact@v5
+    uses: actions/upload-artifact@v6
     with:
       name: android-mobile-release
       path: dist/android-mobile/
       retention-days: 5
-
+```
 
 # ============================================
 
@@ -147,13 +148,13 @@ build-android-tv:
 name: Build Android TV
 runs-on: ubuntu-latest
 
-
+```
 steps:
   - name: Checkout repository
-    uses: actions/checkout@v6
+    uses: actions/checkout@v7
 
   - name: Setup Java
-    uses: actions/setup-java@v5
+    uses: actions/setup-java@v6
     with:
       distribution: temurin
       java-version: '17'
@@ -203,11 +204,12 @@ steps:
         dist/android-tv/flutteriptv-AndroidTV-universal.apk
 
   - name: Upload Android TV Artifacts
-    uses: actions/upload-artifact@v5
+    uses: actions/upload-artifact@v6
     with:
       name: android-tv-release
       path: dist/android-tv/
       retention-days: 5
+```
 
 # ============================================
 
@@ -217,11 +219,12 @@ steps:
 
 create-release:
 name: Create Release
-needs:
-- build-windows
-- build-android-mobile
-- build-android-tv
 
+```
+needs:
+  - build-windows
+  - build-android-mobile
+  - build-android-tv
 
 runs-on: ubuntu-latest
 
@@ -230,22 +233,22 @@ permissions:
 
 steps:
   - name: Checkout repository
-    uses: actions/checkout@v6
+    uses: actions/checkout@v7
 
   - name: Download Windows Artifact
-    uses: actions/download-artifact@v6
+    uses: actions/download-artifact@v7
     with:
       name: windows-release
       path: ./release-assets/
 
   - name: Download Android Mobile Artifacts
-    uses: actions/download-artifact@v6
+    uses: actions/download-artifact@v7
     with:
       name: android-mobile-release
       path: ./release-assets/android-mobile/
 
   - name: Download Android TV Artifacts
-    uses: actions/download-artifact@v6
+    uses: actions/download-artifact@v7
     with:
       name: android-tv-release
       path: ./release-assets/android-tv/
