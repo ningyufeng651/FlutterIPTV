@@ -90,7 +90,7 @@ class AppTheme {
         onSurface: textPrimary,
         onError: Colors.white,
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: cardColor,
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -248,7 +248,7 @@ class AppTheme {
         ),
         hintStyle: const TextStyle(color: textMuted),
       ),
-      dialogTheme: DialogTheme(
+      dialogTheme: DialogThemeData(
         backgroundColor: surfaceColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radiusLarge),
