@@ -18,7 +18,7 @@ jobs:
   build-windows:
     name: Build Windows
     runs-on: windows-latest
-    
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,7 +29,6 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: stable
           cache: true
-
       - name: Set Env & Pub Mirror
         run: |
           echo "PUB_HOSTED_URL=https://pub.flutter-io.cn" | Out-File -FilePath $env:GITHUB_ENV -Append
@@ -39,7 +38,6 @@ jobs:
       
       - name: Get dependencies
         run: flutter pub get
-
       - name: Enable Windows Desktop support
         run: flutter config --enable-windows-desktop
       
@@ -75,7 +73,7 @@ jobs:
   build-android-mobile:
     name: Build Android Mobile
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -127,7 +125,7 @@ jobs:
   build-android-tv:
     name: Build Android TV
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -183,7 +181,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
