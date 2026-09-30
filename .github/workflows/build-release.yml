@@ -82,7 +82,7 @@ build-android-mobile:
 name: Build Android Mobile
 runs-on: ubuntu-latest
 
-```
+
 steps:
   - name: Checkout repository
     uses: actions/checkout@v7
@@ -148,7 +148,7 @@ build-android-tv:
 name: Build Android TV
 runs-on: ubuntu-latest
 
-```
+
 steps:
   - name: Checkout repository
     uses: actions/checkout@v7
@@ -220,7 +220,7 @@ steps:
 create-release:
 name: Create Release
 
-```
+
 needs:
   - build-windows
   - build-android-mobile
@@ -356,4 +356,4 @@ steps:
         release-assets/android-tv/flutteriptv-AndroidTV-universal.apk
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
+
